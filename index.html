@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Grade Calculator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/74f06fdcd6.js" ></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+           <div class="container">
+             
+                <div class="text">
+                    <p>Students<br>Marks,%<br>&<br>Grade<br>Calculator</p>
+                    
+                </div>
+                              
+                <form  class="formbox">
+                    <div>
+                        <input type="number" placeholder="Hindi" id="hindi" >
+                    </div>
+                    <div>
+                        <input type="number" placeholder="English" id="eng" >
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Maths" id="maths" >
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Physics" id="phy" >
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Chemistry" id="chem" >
+                    </div>
+                    <div>
+                        <input type="button" value="Calculate" id="btn" onclick="calculate()" >
+                    </div>
+                    <div id="arrow">
+                        <i class="fas fa-redo" onclick="location.reload()"></i>
+                    </div>
+ 
+                    <div id="databox">
+                       <p id="data">result<br>total marks = <br>percentage =<br>grade =<br></p>
+                    </div>  
+               
+                </form>
+               
+            </div>
+
+        </div>
+
+   <!------------------------java script start here---------------------->
+
+        <script>
+ 
+              function calculate(){
+
+                // Changing visibility of input tags.
+
+               var x= document.getElementsByTagName('input');
+               x[0].style.visibility = 'hidden';
+               x[1].style.visibility = 'hidden';
+               x[2].style.visibility = 'hidden';
+               x[3].style.visibility = 'hidden';
+               x[4].style.visibility = 'hidden';
+
+              // Changing visibility of data in databox.
+               document.getElementById('data').style.display = 'block';
+               
+             // Giving a background color to formbox.
+
+               var z= document.querySelectorAll('.formbox');
+               z[0].style.backgroundColor = 'rgb(11, 36, 36)';
+
+                // displaying refresh button.
+
+               document.getElementById('arrow').style.display = 'block';
+
+            // Storing value of these input fields in variables.
+
+                let hindi = document.getElementById('hindi').value;
+                let eng = document.getElementById('eng').value;
+                let maths = document.getElementById('maths').value;
+                let phy = document.getElementById('phy').value;
+                let chem = document.getElementById('chem').value;
+
+                let grade='';
+               // Calculating total marks and percentage. 
+                let total = parseFloat(hindi) + parseFloat(eng) +parseFloat(maths) +parseFloat(phy) +parseFloat(chem);
+                let percentage = (total/500)*100;
+               
+               // Grading according to percentage.
+                if(percentage <=100 && percentage >=80)
+                {
+                  grade = 'A';
+                }
+                else if(percentage < 80 && percentage >=60)
+                {
+                    grade = 'B';
+                }
+                else if(percentage < 60 && percentage >=40)
+                {
+                    grade = 'C';
+                }
+                else
+                {
+                    grade = 'D';
+                }
+                
+
+                // Showing output.
+                if(percentage >=40)
+                { 
+                    document.getElementById('data').style.color = 'rgb(23, 190, 23)';
+                    document.getElementById('data').innerHTML = `result<br><br> total marks = ${total}<br> percentage = ${percentage}%<br> grade = ${grade}<br><br>pass`;
+
+                }
+                else
+                {
+                    document.getElementById('data').style.color = 'rgb(218, 27, 27)';
+                    document.getElementById('data').innerHTML = `result<br><br> total marks = ${total}<br> percentage = ${percentage}%<br> grade = ${grade}<br><br>fail`;
+                }
+                
+                
+            } 
+
+        
+        </script>
+        
+    </body>
+</html>
